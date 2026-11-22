@@ -1,0 +1,1027 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#24102f">
+<title>Cocoteo FM</title>
+
+<style>
+:root {
+  --pink: #ff70c8;
+  --deep: #24102f;
+  --muted: #c9a9d2;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 16px;
+  min-height: 100vh;
+  color: white;
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at 10% 5%, #773e91 0, transparent 38%),
+    radial-gradient(ellipse at 95% 35%, #a52c83 0, transparent 35%),
+    linear-gradient(155deg, #25102f, #41164f 55%, #24102f);
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 38px 15px 30px;
+  margin-bottom: 18px;
+  border-radius: 25px;
+  border: 1px solid #ffffff30;
+  background:
+    radial-gradient(ellipse at 50% 120%, #ff8bd5 0, transparent 55%),
+    linear-gradient(135deg, #572568, #c33b91 60%, #7543b4);
+  box-shadow: 0 12px 30px #10081780;
+}
+
+header::before,
+header::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #ffffff20;
+  border-radius: 100% 0 100% 0;
+  transform: rotate(35deg);
+  pointer-events: none;
+}
+
+header::before {
+  top: -85px;
+  left: -65px;
+}
+
+header::after {
+  bottom: -100px;
+  right: -65px;
+  transform: rotate(215deg);
+}
+
+header h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: clamp(29px, 8vw, 43px);
+  font-weight: 1000;
+  letter-spacing: 3px;
+  text-shadow: 3px 4px 0 #57213e;
+}
+
+header p {
+  position: relative;
+  z-index: 1;
+  margin: 9px 0 0;
+  color: #ffe1f5;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.gear {
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  top: 12px;
+  width: auto;
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid #ffffff45;
+  background: #34153b88;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.panel {
+  padding: 20px;
+  margin-bottom: 16px;
+  border-radius: 22px;
+  border: 1px solid #ffffff18;
+  background: linear-gradient(145deg, #40224d, #2c1839);
+  box-shadow: 0 10px 25px #10081750;
+}
+
+h2 {
+  margin: 0 0 17px;
+  color: var(--pink);
+  font-size: 16px;
+  letter-spacing: 1.5px;
+}
+
+button, select, input {
+  font-family: inherit;
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  font-size: 14px;
+}
+
+button {
+  color: white;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ed4ba9, #a83dc0);
+  cursor: pointer;
+  transition: transform .15s, opacity .15s;
+}
+
+button:active {
+  transform: scale(.97);
+  opacity: .8;
+}
+
+select, input:not([type="range"]):not([type="file"]) {
+  width: 100%;
+  margin-top: 9px;
+  color: white;
+  background: #21132d;
+  border: 1px solid #ffffff20;
+}
+
+input[type="file"] {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  color: #f8c9ec;
+  background: #21132d;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+label {
+  color: #f8c9ec;
+  font-size: 13px;
+}
+
+.radio-display {
+  text-align: center;
+  padding: 25px 12px 18px;
+  margin: 10px 0 20px;
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at center, #a7439a55, transparent 70%),
+    #261532;
+  border: 1px solid #ffffff12;
+}
+
+.radio-disc {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ff9cdb;
+  background:
+    radial-gradient(circle, #ffb4e5 0 8%, #7e3c91 9% 13%, #32183f 14% 45%, #a9479b 46% 48%, #32183f 49%);
+  box-shadow: 0 0 28px #ed63c966;
+}
+
+.radio-disc span {
+  font-size: 13px;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 1px 2px 3px #000;
+}
+
+.radio-display p {
+  margin: 0;
+  color: #f8c9ec;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+#stationStatus {
+  display: table;
+  margin: 0 auto;
+  padding: 8px 15px;
+  border-radius: 30px;
+  color: #ffd5f0;
+  background: #e94ca52b;
+  border: 1px solid #ff8bd555;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#nowPlaying {
+  text-align: center;
+  font-size: 19px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+}
+
+#trackType {
+  text-align: center;
+  color: var(--pink);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+#progress {
+  width: 100%;
+  accent-color: var(--pink);
+  margin-top: 20px;
+}
+
+.time-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.main-play {
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 16px;
+  display: block;
+  margin: 22px auto;
+  background: linear-gradient(145deg, #ff86d1, #d52e98);
+  box-shadow: 0 0 25px #e83d9f66;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.controls button {
+  min-width: 105px;
+  background: #573367;
+  border: 1px solid #ffffff20;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+#stationStatusBottom {
+  text-align: center;
+  margin-top: 25px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+#editAccess {
+  display: none;
+  width: 100%;
+  margin-top: 18px;
+  background: #573367;
+  border: 1px solid #ffffff25;
+}
+
+#editScreen { display: none; }
+
+#trackList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.track {
+  background: #261532;
+  padding: 13px;
+  border: 1px solid #ffffff16;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.track-info {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+
+.track-info small {
+  display: block;
+  color: var(--pink);
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.track-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.track-actions button {
+  min-width: 39px;
+  padding: 10px;
+  font-size: 11px;
+}
+
+.delete { background: #85334f; }
+
+.note {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#count {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 13px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px 8px;
+  font-size: 13px;
+  border: 1px dashed #ffffff30;
+  border-radius: 14px;
+}
+
+.section-label {
+  color: #f8c9ec;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.back-button {
+  width: 100%;
+  background: linear-gradient(135deg, #a344b2, #e34a9f);
+  letter-spacing: 1px;
+}
+
+@media (min-width: 600px) {
+  body {
+    max-width: 540px;
+    margin: auto;
+    padding-top: 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="radioScreen">
+
+<header>
+  <button class="gear" onclick="openEditor()">AJUSTES</button>
+  <h1>COCOTEO FM</h1>
+  <p>LOS SANTOS · 103.5 FM</p>
+  <p>LA GATA &amp; EL MARTILLO</p>
+</header>
+
+<div class="panel">
+
+  <p id="stationStatus">EN ESPERA</p>
+
+  <div class="radio-display">
+    <div class="radio-disc">
+      <span>103.5 FM</span>
+    </div>
+    <p>TRANSMITIENDO DESDE LOS SANTOS</p>
+  </div>
+
+  <p id="trackType">COCOTEO FM</p>
+  <p id="nowPlaying">La radio está esperando...</p>
+
+  <input type="range" id="progress" min="0" max="100" value="0">
+
+  <div class="time-row">
+    <span id="currentTime">0:00</span>
+    <span id="duration">0:00</span>
+  </div>
+
+  <button class="main-play" id="playBtn">PLAY</button>
+
+  <div class="controls">
+    <button id="previousBtn">ANTERIOR</button>
+    <button id="nextBtn">SIGUIENTE</button>
+  </div>
+
+  <p id="stationStatusBottom" class="note">
+    COCOTEO FM · FRECUENCIA 103.5
+  </p>
+
+  <button id="editAccess" onclick="openEditor()">
+    ADMINISTRAR BIBLIOTECA
+  </button>
+
+</div>
+</div>
+
+<div id="editScreen">
+
+<header>
+  <h1>COCOTEO FM</h1>
+  <p>CONTROL DE TRANSMISIÓN</p>
+</header>
+
+<div class="panel">
+  <h2>IMPORTAR AUDIOS</h2>
+
+  <label class="section-label">CATEGORÍA DEL AUDIO</label>
+
+  <select id="audioType">
+    <option value="song">CANCIONES</option>
+    <option value="intervention">INTERVENCIONES</option>
+  </select>
+
+  <p class="note">
+    Las canciones pueden incluir su presentación al principio
+    del mismo archivo. Las intervenciones incluyen publicidades,
+    charlas y comentarios.
+  </p>
+
+  <input type="file" id="fileInput" accept="audio/*" multiple>
+
+  <p id="count">0 audios guardados</p>
+</div>
+
+<div class="panel">
+  <h2>BIBLIOTECA</h2>
+
+  <select id="filter">
+    <option value="all">TODOS LOS AUDIOS</option>
+    <option value="song">CANCIONES</option>
+    <option value="intervention">INTERVENCIONES</option>
+  </select>
+
+  <div id="trackList">
+    <div class="empty">Todavía no agregaste audios.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>VOLVER A TRANSMITIR</h2>
+  <p class="note">
+    Volvé a la frecuencia principal y continuá escuchando Cocoteo FM.
+  </p>
+  <button class="back-button" onclick="startRadio()">
+    VOLVER A LA RADIO
+  </button>
+</div>
+
+</div>
+
+<audio id="player"></audio>
+
+<script>
+const DB_NAME = "CocoteoFM";
+const STORE_NAME = "audios";
+
+const player = document.getElementById("player");
+const fileInput = document.getElementById("fileInput");
+const audioType = document.getElementById("audioType");
+const trackList = document.getElementById("trackList");
+const nowPlaying = document.getElementById("nowPlaying");
+const trackType = document.getElementById("trackType");
+const count = document.getElementById("count");
+const progress = document.getElementById("progress");
+
+let db;
+let tracks = [];
+
+let currentId = null;
+let radioCurrentId = null;
+let currentURL = null;
+
+let songBag = [];
+let history = [];
+
+let lastInterventionId = null;
+let radioMode = true;
+let playing = false;
+
+const typeNames = {
+  song: "CANCIÓN",
+  intervention: "INTERVENCIÓN"
+};
+
+// BASE DE DATOS
+
+function openDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, 1);
+
+    request.onupgradeneeded = event => {
+      const database = event.target.result;
+
+      if (!database.objectStoreNames.contains(STORE_NAME)) {
+        database.createObjectStore(STORE_NAME, {
+          keyPath: "id",
+          autoIncrement: true
+        });
+      }
+    };
+
+    request.onsuccess = event => resolve(event.target.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+function saveTrack(track) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, "readwrite");
+    const request = transaction.objectStore(STORE_NAME).add(track);
+
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
+}
+
+function getTracks() {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, "readonly");
+    const request = transaction.objectStore(STORE_NAME).getAll();
+
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+function deleteTrack(id) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, "readwrite");
+    const request = transaction.objectStore(STORE_NAME).delete(id);
+
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
+}
+
+function findTrack(id) {
+  return tracks.find(track => track.id === id);
+}
+
+// UTILIDADES
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+
+  return minutes + ":" + String(secs).padStart(2, "0");
+}
+
+function shuffle(array) {
+  const result = [...array];
+
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
+// INTERFAZ
+
+function updatePlayerScreen(track) {
+  if (!track) {
+    nowPlaying.textContent = "La radio está esperando...";
+    trackType.textContent = "COCOTEO FM";
+    return;
+  }
+
+  nowPlaying.textContent = track.name;
+  trackType.textContent = typeNames[track.type];
+}
+
+function updatePlaybackStatus() {
+  const status = document.getElementById("stationStatus");
+
+  if (playing) {
+    status.textContent = "EN VIVO";
+    document.getElementById("playBtn").textContent = "PAUSA";
+    document.getElementById("editAccess").style.display = "none";
+  } else {
+    status.textContent = "PAUSADO";
+    document.getElementById("playBtn").textContent = "PLAY";
+    document.getElementById("editAccess").style.display = "block";
+  }
+}
+
+function openEditor() {
+  document.getElementById("radioScreen").style.display = "none";
+  document.getElementById("editScreen").style.display = "block";
+  refreshLibrary();
+}
+
+function closeEditor() {
+  document.getElementById("editScreen").style.display = "none";
+  document.getElementById("radioScreen").style.display = "block";
+}
+
+// BIBLIOTECA
+
+async function refreshLibrary() {
+  tracks = await getTracks();
+
+  count.textContent = tracks.length +
+    (tracks.length === 1 ? " audio guardado" : " audios guardados");
+
+  const selected = document.getElementById("filter").value;
+
+  const visible = tracks.filter(track =>
+    selected === "all" || track.type === selected
+  );
+
+  trackList.innerHTML = "";
+
+  if (visible.length === 0) {
+    trackList.innerHTML =
+      '<div class="empty">No hay audios en esta categoría.</div>';
+    return;
+  }
+
+  visible.forEach(track => {
+    const item = document.createElement("div");
+    item.className = "track";
+
+    const info = document.createElement("div");
+    info.className = "track-info";
+
+    const name = document.createElement("strong");
+    name.textContent = track.name;
+
+    const category = document.createElement("small");
+    category.textContent = typeNames[track.type];
+
+    info.appendChild(name);
+    info.appendChild(category);
+
+    const actions = document.createElement("div");
+    actions.className = "track-actions";
+
+    const playButton = document.createElement("button");
+    playButton.textContent = "PLAY";
+    playButton.onclick = () => previewTrack(track.id);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "BORRAR";
+    deleteButton.className = "delete";
+    deleteButton.onclick = () => removeTrack(track.id);
+
+    actions.appendChild(playButton);
+    actions.appendChild(deleteButton);
+
+    item.appendChild(info);
+    item.appendChild(actions);
+
+    trackList.appendChild(item);
+  });
+}
+
+fileInput.addEventListener("change", async function() {
+  const files = Array.from(fileInput.files);
+
+  for (const file of files) {
+    if (!file.type.startsWith("audio/")) continue;
+
+    await saveTrack({
+      name: file.name,
+      type: audioType.value,
+      file: file
+    });
+  }
+
+  fileInput.value = "";
+  songBag = [];
+
+  await refreshLibrary();
+});
+
+// PROGRAMACIÓN ALEATORIA
+
+function nextSong() {
+  const songs = tracks.filter(track => track.type === "song");
+
+  if (songs.length === 0) return null;
+
+  // Descarta canciones que hayan sido eliminadas.
+  songBag = songBag.filter(id => songs.some(song => song.id === id));
+
+  if (songBag.length === 0) {
+    songBag = shuffle(songs.map(track => track.id));
+
+    // Evita repetir la canción anterior al comenzar otra ronda.
+    if (songs.length > 1 && songBag[0] === radioCurrentId) {
+      [songBag[0], songBag[1]] = [songBag[1], songBag[0]];
+    }
+  }
+
+  return songBag.shift();
+}
+
+function randomIntervention() {
+  const interventions = tracks.filter(
+    track => track.type === "intervention"
+  );
+
+  if (interventions.length === 0) return null;
+
+  let available = interventions;
+
+  // Evita dos intervenciones iguales seguidas.
+  if (interventions.length > 1) {
+    available = interventions.filter(
+      track => track.id !== lastInterventionId
+    );
+  }
+
+  const selected = available[
+    Math.floor(Math.random() * available.length)
+  ];
+
+  lastInterventionId = selected.id;
+
+  return selected.id;
+}
+
+// REPRODUCCIÓN
+
+async function playTrack(id, addHistory = true, isRadio = false) {
+  const track = findTrack(id);
+  if (!track) return;
+
+  if (currentURL) {
+    URL.revokeObjectURL(currentURL);
+  }
+
+  currentId = id;
+  currentURL = URL.createObjectURL(track.file);
+
+  if (isRadio) {
+    radioCurrentId = id;
+  }
+
+  player.src = currentURL;
+
+  progress.value = 0;
+  document.getElementById("currentTime").textContent = "0:00";
+  document.getElementById("duration").textContent = "0:00";
+
+  updatePlayerScreen(track);
+
+  if (addHistory && isRadio) {
+    history.push(id);
+  }
+
+  try {
+    await player.play();
+    playing = true;
+  } catch (error) {
+    playing = false;
+  }
+
+  updatePlaybackStatus();
+}
+
+// SIGUIENTE CONTENIDO DE LA RADIO
+
+async function radioNext() {
+  radioMode = true;
+
+  if (tracks.length === 0) {
+    nowPlaying.textContent = "Agregá audios desde la biblioteca.";
+    playing = false;
+    updatePlaybackStatus();
+    return;
+  }
+
+  const songs = tracks.filter(track => track.type === "song");
+  const interventions = tracks.filter(
+    track => track.type === "intervention"
+  );
+
+  const previous = findTrack(radioCurrentId);
+
+  // Después de una intervención siempre vuelve una canción.
+  if (previous?.type === "intervention" && songs.length > 0) {
+    const id = nextSong();
+
+    if (id !== null) {
+      await playTrack(id, true, true);
+    }
+
+    return;
+  }
+
+  // Si no hay canciones, reproduce intervenciones.
+  if (songs.length === 0) {
+    const id = randomIntervention();
+
+    if (id !== null) {
+      await playTrack(id, true, true);
+    }
+
+    return;
+  }
+
+  // 40% de probabilidad de intervención entre canciones.
+  if (interventions.length > 0 && Math.random() < 0.40) {
+    const id = randomIntervention();
+
+    if (id !== null) {
+      await playTrack(id, true, true);
+    }
+  } else {
+    const id = nextSong();
+
+    if (id !== null) {
+      await playTrack(id, true, true);
+    }
+  }
+}
+
+// PRUEBAS DESDE LA BIBLIOTECA
+
+async function previewTrack(id) {
+  radioMode = false;
+
+  // La prueba no modifica el historial ni la rotación.
+  await playTrack(id, false, false);
+}
+
+// VOLVER A LA RADIO
+
+async function startRadio() {
+  const wasPreviewing = !radioMode;
+
+  radioMode = true;
+  closeEditor();
+
+  if (
+    wasPreviewing ||
+    !radioCurrentId ||
+    !findTrack(radioCurrentId)
+  ) {
+    await radioNext();
+  } else if (player.paused) {
+    player.play().catch(() => {});
+  }
+
+  updatePlaybackStatus();
+}
+
+// BOTONES
+
+document.getElementById("playBtn").onclick = async function() {
+  if (!currentId) {
+    await radioNext();
+    return;
+  }
+
+  if (player.paused) {
+    try {
+      await player.play();
+      playing = true;
+    } catch (error) {
+      playing = false;
+    }
+  } else {
+    player.pause();
+    playing = false;
+  }
+
+  updatePlaybackStatus();
+};
+
+document.getElementById("nextBtn").onclick = async function() {
+  await radioNext();
+};
+
+document.getElementById("previousBtn").onclick = async function() {
+  if (history.length > 1) {
+    history.pop();
+
+    const previousId = history[history.length - 1];
+
+    if (findTrack(previousId)) {
+      await playTrack(previousId, false, true);
+    } else {
+      await radioNext();
+    }
+  } else {
+    await radioNext();
+  }
+};
+
+// EVENTOS DEL REPRODUCTOR
+
+player.addEventListener("play", () => {
+  playing = true;
+  updatePlaybackStatus();
+});
+
+player.addEventListener("pause", () => {
+  playing = false;
+  updatePlaybackStatus();
+});
+
+player.addEventListener("ended", () => {
+  if (radioMode) {
+    radioNext();
+  }
+});
+
+player.addEventListener("timeupdate", () => {
+  if (!Number.isFinite(player.duration)) return;
+
+  progress.value = (player.currentTime / player.duration) * 100;
+
+  document.getElementById("currentTime").textContent =
+    formatTime(player.currentTime);
+
+  document.getElementById("duration").textContent =
+    formatTime(player.duration);
+});
+
+player.addEventListener("loadedmetadata", () => {
+  document.getElementById("duration").textContent =
+    formatTime(player.duration);
+});
+
+progress.addEventListener("input", () => {
+  if (Number.isFinite(player.duration)) {
+    player.currentTime = (progress.value / 100) * player.duration;
+  }
+});
+
+// FILTROS
+
+document.getElementById("filter").onchange = refreshLibrary;
+
+// ELIMINAR AUDIOS
+
+async function removeTrack(id) {
+  if (!confirm("¿Eliminar este audio de la biblioteca?")) return;
+
+  if (id === currentId) {
+    player.pause();
+    player.removeAttribute("src");
+    player.load();
+
+    if (currentURL) {
+      URL.revokeObjectURL(currentURL);
+    }
+
+    currentURL = null;
+    currentId = null;
+    playing = false;
+    progress.value = 0;
+
+    updatePlayerScreen(null);
+    updatePlaybackStatus();
+  }
+
+  if (id === radioCurrentId) {
+    radioCurrentId = null;
+  }
+
+  songBag = songBag.filter(songId => songId !== id);
+  history = history.filter(trackId => trackId !== id);
+
+  if (id === lastInterventionId) {
+    lastInterventionId = null;
+  }
+
+  await deleteTrack(id);
+  await refreshLibrary();
+}
+
+// INICIO
+
+async function init() {
+  try {
+    db = await openDatabase();
+    await refreshLibrary();
+    updatePlaybackStatus();
+  } catch (error) {
+    alert("No se pudo abrir la biblioteca.");
+  }
+}
+
+init();
+</script>
+
+</body>
+</html>
