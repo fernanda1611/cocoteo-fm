@@ -1,138 +1,355 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#24102f">
-<title>Cocoteo FM</title>
+<meta name="theme-color" content="#100d1c">
+<title>Cocoteo FM — Vice City</title>
 
 <style>
-:root{--pink:#ff70c8;--deep:#24102f;--muted:#c9a9d2}
+:root{
+  --pink:#ff4fa3;
+  --cyan:#65eaff;
+  --purple:#a66bff;
+  --orange:#ffad70;
+  --bg:#100d1c;
+  --panel:#1b1729;
+  --muted:#aaa5bd;
+}
 *{box-sizing:border-box}
 body{
-  margin:0;padding:16px;min-height:100vh;color:white;
+  margin:0;
+  padding:15px;
+  min-height:100vh;
+  color:white;
   font-family:Arial,sans-serif;
   background:
-    radial-gradient(ellipse at 10% 5%,#773e91 0,transparent 38%),
-    radial-gradient(ellipse at 95% 35%,#a52c83 0,transparent 35%),
-    linear-gradient(155deg,#25102f,#41164f 55%,#24102f)
+    radial-gradient(ellipse at 10% 0%,#54234f 0,transparent 38%),
+    radial-gradient(ellipse at 100% 35%,#183c58 0,transparent 38%),
+    linear-gradient(155deg,#100d1c,#171326 55%,#0d1723);
 }
 header{
-  position:relative;overflow:hidden;text-align:center;
-  padding:38px 15px 30px;margin-bottom:18px;
-  border-radius:25px;border:1px solid #ffffff30;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:43px 15px 32px;
+  margin-bottom:17px;
+  border-radius:23px;
+  border:1px solid #ffffff25;
   background:
-    radial-gradient(ellipse at 50% 120%,#ff8bd5 0,transparent 55%),
-    linear-gradient(135deg,#572568,#c33b91 60%,#7543b4);
-  box-shadow:0 12px 30px #10081780
+    linear-gradient(115deg,#ff4fa3aa,transparent 50%),
+    linear-gradient(155deg,#182c50,#4a2861 55%,#132b43);
+  box-shadow:0 12px 35px #0008;
 }
-header::before,header::after{
-  content:"";position:absolute;width:150px;height:150px;
-  border:2px solid #ffffff20;border-radius:100% 0 100% 0;
-  transform:rotate(35deg);pointer-events:none
+header::before{
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  border:1px solid #ffffff25;
+  border-radius:50%;
+  top:-145px;left:-65px;
+  box-shadow:0 0 0 18px #ffffff08,0 0 0 38px #ffffff05;
 }
-header::before{top:-85px;left:-65px}
-header::after{bottom:-100px;right:-65px;transform:rotate(215deg)}
+header::after{
+  content:"";
+  position:absolute;
+  width:150px;height:150px;
+  border:1px solid #65eaff55;
+  border-radius:50%;
+  bottom:-115px;right:-35px;
+  box-shadow:0 0 0 15px #65eaff10,0 0 0 32px #65eaff08;
+}
 header h1{
-  position:relative;z-index:1;margin:0;
-  font-size:clamp(29px,8vw,43px);font-weight:1000;
-  letter-spacing:3px;text-shadow:3px 4px 0 #57213e
+  position:relative;
+  z-index:1;
+  margin:0;
+  font-size:clamp(30px,9vw,46px);
+  font-weight:1000;
+  letter-spacing:3px;
+  font-style:italic;
+  text-shadow:3px 4px 0 #a52e76,0 0 20px #ff4fa388;
 }
 header p{
-  position:relative;z-index:1;margin:9px 0 0;
-  color:#ffe1f5;font-size:11px;font-weight:bold;letter-spacing:3px
+  position:relative;
+  z-index:1;
+  margin:9px 0 0;
+  color:#bdf8ff;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:3px;
 }
 .gear{
-  position:absolute;z-index:2;right:12px;top:12px;
-  width:auto;margin:0;padding:9px 12px;
-  border:1px solid #ffffff45;background:#34153b88;
-  font-size:11px;letter-spacing:1px
+  position:absolute;
+  z-index:3;
+  right:12px;top:12px;
+  width:auto;
+  margin:0;
+  padding:9px 12px;
+  border:1px solid #ffffff45;
+  background:#100d1c99;
+  font-size:10px;
+  letter-spacing:1px;
 }
 .panel{
-  padding:20px;margin-bottom:16px;border-radius:22px;
-  border:1px solid #ffffff18;
-  background:linear-gradient(145deg,#40224d,#2c1839);
-  box-shadow:0 10px 25px #10081750
+  padding:19px;
+  margin-bottom:15px;
+  border-radius:20px;
+  border:1px solid #ffffff16;
+  background:linear-gradient(145deg,#211c32,#171525);
+  box-shadow:0 10px 28px #0005;
 }
-h2{margin:0 0 17px;color:var(--pink);font-size:16px;letter-spacing:1.5px}
-button,select,input{font-family:inherit;border:none;border-radius:12px;padding:13px;font-size:14px}
+h2{
+  margin:0 0 16px;
+  color:var(--cyan);
+  font-size:14px;
+  letter-spacing:2px;
+}
+button,select,input{
+  font-family:inherit;
+  border:none;
+  border-radius:11px;
+  padding:13px;
+  font-size:13px;
+}
 button{
-  color:white;font-weight:bold;
-  background:linear-gradient(135deg,#ed4ba9,#a83dc0);
-  cursor:pointer;transition:transform .15s,opacity .15s
+  color:white;
+  font-weight:bold;
+  background:linear-gradient(120deg,#ff4fa3,#a66bff);
+  cursor:pointer;
+  transition:transform .15s,opacity .15s;
 }
 button:active{transform:scale(.97);opacity:.8}
 select,input:not([type="range"]){
-  width:100%;margin-top:9px;color:white;
-  background:#21132d;border:1px solid #ffffff20
+  width:100%;
+  margin-top:9px;
+  color:white;
+  background:#100e1c;
+  border:1px solid #ffffff20;
 }
-label{color:#f8c9ec;font-size:13px}
+input::placeholder{color:#77748a}
+label{
+  color:#c7c2d8;
+  font-size:12px;
+}
 .radio-display{
-  text-align:center;padding:25px 12px 18px;margin:10px 0 20px;
+  text-align:center;
+  padding:28px 12px 20px;
+  margin:13px 0 18px;
   border-radius:18px;
-  background:radial-gradient(ellipse at center,#a7439a55,transparent 70%),#261532;
-  border:1px solid #ffffff12
+  border:1px solid #ffffff12;
+  background:
+    radial-gradient(ellipse at center,#ff4fa333,transparent 65%),
+    linear-gradient(145deg,#171426,#111b2a);
 }
 .radio-disc{
-  width:112px;height:112px;margin:0 auto 17px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  border:2px solid #ff9cdb;
-  background:radial-gradient(circle,#ffb4e5 0 8%,#7e3c91 9% 13%,#32183f 14% 45%,#a9479b 46% 48%,#32183f 49%);
-  box-shadow:0 0 28px #ed63c966
+  position:relative;
+  width:125px;height:125px;
+  margin:0 auto 17px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #ff83c5;
+  background:
+    radial-gradient(circle,#ffffff 0 5%,#ff83c5 6% 10%,#24152f 11% 43%,#65eaff 44% 46%,#171426 47% 60%,#ff4fa3 61% 63%,#171426 64%);
+  box-shadow:0 0 22px #ff4fa355,0 0 45px #65eaff22;
 }
-.radio-disc span{font-size:13px;font-weight:1000;letter-spacing:2px;color:white;text-shadow:1px 2px 3px #000}
-.radio-display p{margin:0;color:#f8c9ec;font-size:10px;font-weight:bold;letter-spacing:3px}
+.radio-disc span{
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-shadow:1px 2px 4px #000;
+}
+.radio-display p{
+  margin:0;
+  color:#c4faff;
+  font-size:9px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
 #stationStatus{
-  display:table;margin:0 auto;padding:8px 15px;border-radius:30px;
-  color:#ffd5f0;background:#e94ca52b;border:1px solid #ff8bd555;
-  font-size:10px;font-weight:bold;letter-spacing:2px
+  display:table;
+  margin:0 auto;
+  padding:8px 16px;
+  border-radius:30px;
+  color:#bdf8ff;
+  background:#65eaff15;
+  border:1px solid #65eaff55;
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:2px;
 }
-#nowPlaying{text-align:center;font-size:19px;font-weight:bold;overflow-wrap:anywhere;margin:12px 0}
-#trackType{text-align:center;color:var(--pink);font-size:10px;font-weight:bold;letter-spacing:2px;margin:0}
-#progress{width:100%;accent-color:var(--pink);margin-top:20px}
-.time-row{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
+#nowPlaying{
+  text-align:center;
+  font-size:19px;
+  font-weight:bold;
+  overflow-wrap:anywhere;
+  margin:13px 0;
+}
+#trackType{
+  text-align:center;
+  color:var(--pink);
+  font-size:10px;
+  font-weight:bold;
+  letter-spacing:2px;
+  margin:0;
+}
+#progress{
+  width:100%;
+  accent-color:var(--pink);
+  margin-top:20px;
+}
+.time-row{
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+}
 .main-play{
-  width:72px;height:72px;padding:0;border-radius:50%;font-size:16px;
-  display:block;margin:22px auto;
-  background:linear-gradient(145deg,#ff86d1,#d52e98);
-  box-shadow:0 0 25px #e83d9f66
+  width:72px;height:72px;
+  padding:0;
+  border-radius:50%;
+  font-size:13px;
+  display:block;
+  margin:22px auto;
+  background:linear-gradient(145deg,#ff70b5,#a66bff);
+  box-shadow:0 0 25px #ff4fa355;
 }
-.controls{display:flex;justify-content:center;align-items:center;gap:14px}
+.controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+}
 .controls button{
-  min-width:105px;background:#573367;border:1px solid #ffffff20;
-  font-size:11px;letter-spacing:1px
+  min-width:110px;
+  background:#25223a;
+  border:1px solid #ffffff20;
+  font-size:10px;
+  letter-spacing:1px;
 }
-#stationStatusBottom{text-align:center;margin-top:25px;color:var(--muted);font-size:10px;letter-spacing:2px}
-#editAccess{display:none;width:100%;margin-top:18px;background:#573367;border:1px solid #ffffff25}
+#stationStatusBottom{
+  text-align:center;
+  margin-top:25px;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:2px;
+}
+#editAccess{
+  display:none;
+  width:100%;
+  margin-top:17px;
+  background:#25223a;
+  border:1px solid #ffffff25;
+}
 #editScreen{display:none}
-#trackList{display:flex;flex-direction:column;gap:10px;margin-top:15px}
+#trackList{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-top:14px;
+}
 .track{
-  background:#261532;padding:13px;border:1px solid #ffffff16;
-  border-radius:14px;display:flex;align-items:center;gap:9px
+  background:#12101f;
+  padding:13px;
+  border:1px solid #ffffff16;
+  border-radius:13px;
+  display:flex;
+  align-items:center;
+  gap:9px;
 }
-.track-info{flex:1;min-width:0;overflow-wrap:anywhere;font-size:13px}
-.track-info small{display:block;color:var(--pink);margin-top:6px;font-size:10px;letter-spacing:1px}
+.track-info{
+  flex:1;
+  min-width:0;
+  overflow-wrap:anywhere;
+  font-size:13px;
+}
+.track-info small{
+  display:block;
+  color:var(--cyan);
+  margin-top:6px;
+  font-size:9px;
+  letter-spacing:1px;
+}
 .track-actions{display:flex;gap:6px}
-.track-actions button{min-width:48px;padding:10px 8px;font-size:11px}
-.delete{background:#85334f}
-.note{color:var(--muted);font-size:12px;line-height:1.6}
-#count{color:var(--muted);font-size:12px;margin-top:13px}
-.empty{text-align:center;color:var(--muted);padding:25px 8px;font-size:13px;border:1px dashed #ffffff30;border-radius:14px}
-.section-label{color:#f8c9ec;font-size:12px;letter-spacing:1px}
-.back-button{width:100%;background:linear-gradient(135deg,#a344b2,#e34a9f);letter-spacing:1px}
-#youtubeBox{
-  display:none;margin:15px 0;border-radius:15px;
-  overflow:hidden;background:#160d20;border:1px solid #ffffff20
+.track-actions button{
+  min-width:48px;
+  padding:10px 8px;
+  font-size:10px;
 }
-#youtubePlayer{width:100%;aspect-ratio:16/9}
-#youtubePlayer iframe{width:100%;height:100%;border:0}
+.delete{background:#78334f}
+.note{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+}
+#count{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:13px;
+}
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:23px 8px;
+  font-size:12px;
+  border:1px dashed #ffffff30;
+  border-radius:13px;
+}
+.section-label{
+  color:#c7c2d8;
+  font-size:11px;
+  letter-spacing:1px;
+}
+.back-button{
+  width:100%;
+  background:linear-gradient(120deg,#ff4fa3,#a66bff);
+  letter-spacing:1px;
+}
+#youtubeBox{
+  display:none;
+  margin:15px 0;
+  border-radius:15px;
+  overflow:hidden;
+  background:#100d1c;
+  border:1px solid #65eaff44;
+}
+#youtubePlayer{
+  width:100%;
+  aspect-ratio:16/9;
+}
+#youtubePlayer iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
 .youtube-item{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:10px;background:#261532;border:1px solid #ffffff20;
-  padding:12px;margin-top:9px;border-radius:12px;font-size:12px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  background:#12101f;
+  border:1px solid #ffffff20;
+  padding:12px;
+  margin-top:9px;
+  border-radius:12px;
+  font-size:11px;
 }
 .youtube-item span{overflow-wrap:anywhere;flex:1}
-@media(min-width:600px){body{max-width:540px;margin:auto;padding-top:25px}}
+.priority-note{
+  padding:10px 12px;
+  margin:12px 0;
+  border-radius:10px;
+  background:#65eaff12;
+  border:1px solid #65eaff30;
+  color:#bdf8ff;
+  font-size:10px;
+  line-height:1.5;
+}
+@media(min-width:600px){
+  body{max-width:540px;margin:auto;padding-top:25px}
+}
 </style>
 </head>
 
@@ -143,7 +360,7 @@ label{color:#f8c9ec;font-size:13px}
 <button class="gear" onclick="openEditor()">AJUSTES</button>
 <h1>COCOTEO FM</h1>
 <p>VICE CITY · 93.7 FM</p>
-<p>LA GATA &amp; EL MARTILLO</p>
+<p>THE SOUND OF THE CITY</p>
 </header>
 
 <div class="panel">
@@ -159,7 +376,7 @@ label{color:#f8c9ec;font-size:13px}
 
 <div id="youtubeBox">
 <div id="youtubePlayer"></div>
-<p style="padding:8px;text-align:center;color:#ff70c8;font-size:11px">
+<p style="padding:8px;text-align:center;color:#65eaff;font-size:10px;letter-spacing:2px">
 COCOTEO FM · YOUTUBE
 </p>
 </div>
@@ -177,7 +394,7 @@ COCOTEO FM · YOUTUBE
 <button id="nextBtn">SIGUIENTE</button>
 </div>
 
-<p id="stationStatusBottom" class="note">COCOTEO FM · FRECUENCIA 103.5</p>
+<p id="stationStatusBottom">COCOTEO FM · FRECUENCIA 103.5</p>
 <button id="editAccess" onclick="openEditor()">ADMINISTRAR BIBLIOTECA</button>
 </div>
 </div>
@@ -187,6 +404,7 @@ COCOTEO FM · YOUTUBE
 <header>
 <h1>COCOTEO FM</h1>
 <p>CONTROL DE TRANSMISIÓN</p>
+<p>VICE CITY RADIO SYSTEM</p>
 </header>
 
 <div class="panel">
@@ -204,7 +422,7 @@ COCOTEO FM · YOUTUBE
 <label class="section-label" for="audioURL">ENLACE DIRECTO DEL AUDIO</label>
 <input id="audioURL" type="url" placeholder="https://res.cloudinary.com/...">
 
-<p class="note">Pegá el enlace directo del archivo de audio de Cloudinary. Los archivos pueden tener distintas duraciones.</p>
+<p class="note">Pegá el enlace directo del archivo de audio de Cloudinary.</p>
 
 <button id="addAudioBtn" style="width:100%;margin-top:12px">AGREGAR A LA BIBLIOTECA</button>
 <p id="formMessage" class="note" aria-live="polite"></p>
@@ -213,7 +431,11 @@ COCOTEO FM · YOUTUBE
 
 <div class="panel">
 <h2>AGREGAR DESDE YOUTUBE</h2>
-<p class="note">Buscá una canción en YouTube, copiá el enlace del video y pegalo acá para agregarlo a la cola.</p>
+<p class="note">Buscá una canción, copiá el enlace del video y pegalo acá.</p>
+
+<div class="priority-note">
+YOUTUBE TIENE PRIORIDAD: los videos pendientes se reproducen antes que las canciones de tu biblioteca.
+</div>
 
 <button id="searchYoutubeBtn" style="width:100%;margin-bottom:8px">ABRIR BUSCADOR DE YOUTUBE</button>
 <input id="youtubeURL" type="url" placeholder="Pegá acá el enlace de YouTube">
@@ -247,6 +469,7 @@ COCOTEO FM · YOUTUBE
 <script>
 const STORAGE_KEY = "CocoteoFM_online_tracks";
 const YT_QUEUE_KEY = "CocoteoFM_youtube_queue";
+const SONG_BAG_KEY = "CocoteoFM_song_bag";
 const INTERVENTION_CHANCE = 0.20;
 
 const player = document.getElementById("player");
@@ -262,8 +485,8 @@ const formMessage = document.getElementById("formMessage");
 
 let tracks = [];
 let youtubeQueue = [];
+let songBag = [];
 let currentId = null;
-let radioCurrentId = null;
 let history = [];
 let lastInterventionId = null;
 let lastWasIntervention = false;
@@ -302,15 +525,71 @@ function findTrack(id){
   return tracks.find(track => track.id === id);
 }
 
-function formatTime(seconds){
-  if(!Number.isFinite(seconds)) return "0:00";
-  return Math.floor(seconds/60) + ":" +
-    String(Math.floor(seconds%60)).padStart(2,"0");
+function shuffle(array){
+  const result = [...array];
+  for(let i=result.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [result[i],result[j]]=[result[j],result[i]];
+  }
+  return result;
 }
 
 function randomItem(array){
   if(!array.length) return null;
   return array[Math.floor(Math.random()*array.length)];
+}
+
+/* SISTEMA DE CANCIONES SIN REPETICIONES */
+
+function loadSongBag(){
+  const songs = tracks.filter(t=>t.type==="song").map(t=>t.id);
+  const validIds = new Set(songs);
+
+  try{
+    const saved = JSON.parse(localStorage.getItem(SONG_BAG_KEY));
+
+    if(Array.isArray(saved)){
+      songBag = saved.filter((id,index)=>
+        validIds.has(id) && saved.indexOf(id)===index
+      );
+
+      // Las canciones nuevas se agregan al ciclo actual.
+      const missing = songs.filter(id=>!songBag.includes(id));
+      songBag.push(...shuffle(missing));
+    }else{
+      songBag = shuffle(songs);
+    }
+  }catch(error){
+    songBag = shuffle(songs);
+  }
+
+  saveSongBag();
+}
+
+function saveSongBag(){
+  localStorage.setItem(SONG_BAG_KEY,JSON.stringify(songBag));
+}
+
+function getNextSong(){
+  const songs = tracks.filter(t=>t.type==="song");
+
+  // Si ya sonaron todas, comienza un nuevo ciclo mezclado.
+  if(songBag.length===0 && songs.length>0){
+    songBag = shuffle(songs.map(t=>t.id));
+  }
+
+  // Elimina canciones que ya no existen.
+  const validIds = new Set(songs.map(t=>t.id));
+  songBag = songBag.filter(id=>validIds.has(id));
+
+  if(songBag.length===0 && songs.length>0){
+    songBag = shuffle(songs.map(t=>t.id));
+  }
+
+  const id = songBag.shift() || null;
+  saveSongBag();
+
+  return id ? findTrack(id) : null;
 }
 
 function updatePlayerScreen(track){
@@ -319,6 +598,7 @@ function updatePlayerScreen(track){
     trackType.textContent = "COCOTEO FM";
     return;
   }
+
   nowPlaying.textContent = track.name;
   trackType.textContent = typeNames[track.type];
 }
@@ -351,9 +631,14 @@ function closeEditor(){
 
 function refreshLibrary(){
   const selected = document.getElementById("filter").value;
-  count.textContent = tracks.length + (tracks.length===1 ? " audio guardado" : " audios guardados");
 
-  const visible = tracks.filter(track => selected==="all" || track.type===selected);
+  count.textContent = tracks.length +
+    (tracks.length===1 ? " audio guardado" : " audios guardados");
+
+  const visible = tracks.filter(track =>
+    selected==="all" || track.type===selected
+  );
+
   trackList.innerHTML = "";
 
   if(!visible.length){
@@ -361,7 +646,7 @@ function refreshLibrary(){
     return;
   }
 
-  visible.forEach(track => {
+  visible.forEach(track=>{
     const item = document.createElement("div");
     item.className = "track";
 
@@ -381,12 +666,12 @@ function refreshLibrary(){
 
     const playButton = document.createElement("button");
     playButton.textContent = "PLAY";
-    playButton.onclick = () => previewTrack(track.id);
+    playButton.onclick = ()=>previewTrack(track.id);
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "BORRAR";
     deleteButton.className = "delete";
-    deleteButton.onclick = () => removeTrack(track.id);
+    deleteButton.onclick = ()=>removeTrack(track.id);
 
     actions.append(playButton,deleteButton);
     item.append(info,actions);
@@ -411,15 +696,15 @@ function addAudio(){
     return;
   }
 
-  if(parsed.protocol !== "https:" || parsed.hostname !== "res.cloudinary.com"){
-    formMessage.textContent = "Por ahora pegá una URL HTTPS directa de res.cloudinary.com.";
+  if(parsed.protocol!=="https:" || parsed.hostname!=="res.cloudinary.com"){
+    formMessage.textContent = "Pegá una URL HTTPS directa de res.cloudinary.com.";
     return;
   }
 
   const track = {
-    id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random(),
+    id:crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random(),
     name,
-    type: audioType.value,
+    type:audioType.value,
     url
   };
 
@@ -427,9 +712,14 @@ function addAudio(){
 
   try{
     saveTracks();
+
+    if(track.type==="song"){
+      songBag.push(track.id);
+      saveSongBag();
+    }
   }catch(error){
     tracks.pop();
-    formMessage.textContent = "No se pudo guardar. El almacenamiento del navegador puede estar lleno.";
+    formMessage.textContent = "No se pudo guardar. El almacenamiento puede estar lleno.";
     return;
   }
 
@@ -441,16 +731,20 @@ function addAudio(){
 
 document.getElementById("addAudioBtn").addEventListener("click",addAudio);
 
+/* YOUTUBE */
+
 function loadYoutubeQueue(){
   try{
     const saved = JSON.parse(localStorage.getItem(YT_QUEUE_KEY) || "[]");
-    youtubeQueue = Array.isArray(saved) ? saved.filter(video =>
-      video && typeof video.id === "string" &&
+
+    youtubeQueue = Array.isArray(saved) ? saved.filter(video=>
+      video && typeof video.id==="string" &&
       /^[a-zA-Z0-9_-]{11}$/.test(video.id)
     ) : [];
   }catch(error){
     youtubeQueue = [];
   }
+
   renderYoutubeQueue();
 }
 
@@ -463,14 +757,14 @@ function getYoutubeId(url){
     const parsed = new URL(url);
     let id = "";
 
-    if(parsed.hostname === "youtu.be"){
+    if(parsed.hostname==="youtu.be"){
       id = parsed.pathname.slice(1).split("/")[0];
     }else if(
-      parsed.hostname === "youtube.com" ||
+      parsed.hostname==="youtube.com" ||
       parsed.hostname.endsWith(".youtube.com") ||
-      parsed.hostname === "youtube-nocookie.com"
+      parsed.hostname==="youtube-nocookie.com"
     ){
-      if(parsed.pathname === "/watch"){
+      if(parsed.pathname==="/watch"){
         id = parsed.searchParams.get("v") || "";
       }else{
         id = parsed.pathname.split("/").filter(Boolean).pop() || "";
@@ -494,7 +788,7 @@ function addYoutubeVideo(){
     return;
   }
 
-  if(youtubeQueue.some(video => video.id === id)){
+  if(youtubeQueue.some(video=>video.id===id)){
     message.textContent = "Ese video ya está en la cola.";
     return;
   }
@@ -506,8 +800,9 @@ function addYoutubeVideo(){
 
   saveYoutubeQueue();
   renderYoutubeQueue();
+
   input.value = "";
-  message.textContent = "¡Video agregado a la cola!";
+  message.textContent = "¡Video agregado! Tendrá prioridad en la radio.";
 }
 
 function renderYoutubeQueue(){
@@ -521,17 +816,18 @@ function renderYoutubeQueue(){
     return;
   }
 
-  youtubeQueue.forEach((video,index) => {
+  youtubeQueue.forEach((video,index)=>{
     const item = document.createElement("div");
     item.className = "youtube-item";
 
     const name = document.createElement("span");
-    name.textContent = (index+1) + ". " + video.name;
+    name.textContent = (index+1)+". "+video.name;
 
     const remove = document.createElement("button");
     remove.textContent = "X";
     remove.className = "delete";
-    remove.onclick = () => {
+
+    remove.onclick = ()=>{
       youtubeQueue.splice(index,1);
       saveYoutubeQueue();
       renderYoutubeQueue();
@@ -545,14 +841,16 @@ function renderYoutubeQueue(){
 function playYoutubeVideo(video){
   if(!video) return;
 
-  player.pause();
   currentSource = "youtube";
   currentId = null;
   pendingVideo = video;
+
+  player.pause();
   playing = false;
 
   progress.disabled = true;
   progress.value = 0;
+
   document.getElementById("currentTime").textContent = "YOUTUBE";
   document.getElementById("duration").textContent = "";
 
@@ -581,30 +879,34 @@ function playNextYoutube(){
   return true;
 }
 
+/* REPRODUCCIÓN DE AUDIOS */
+
 async function playTrack(id,addHistory=true,isRadio=false){
   const track = findTrack(id);
   if(!track) return;
 
-  if(ytPlayer && ytReady) ytPlayer.stopVideo();
+  currentSource = "radio";
+
+  if(ytPlayer && ytReady){
+    ytPlayer.stopVideo();
+  }
 
   document.getElementById("youtubeBox").style.display = "none";
 
-  currentSource = "radio";
   currentId = id;
-  if(isRadio) radioCurrentId = id;
-
-  player.src = track.url;
   progress.disabled = false;
   progress.value = 0;
 
   document.getElementById("currentTime").textContent = "0:00";
   document.getElementById("duration").textContent = "0:00";
 
+  player.src = track.url;
+
   updatePlayerScreen(track);
 
   if(addHistory && isRadio){
     history.push(id);
-    if(history.length > 50) history.shift();
+    if(history.length>50) history.shift();
   }
 
   try{
@@ -620,34 +922,43 @@ async function playTrack(id,addHistory=true,isRadio=false){
   updatePlaybackStatus();
 }
 
+/* PROGRAMACIÓN AUTOMÁTICA */
+
 async function radioNext(){
   if(switching) return;
+
   switching = true;
 
   try{
-    if(currentSource === "youtube"){
+    if(currentSource==="youtube"){
       if(ytPlayer && ytReady) ytPlayer.stopVideo();
+
       document.getElementById("youtubeBox").style.display = "none";
       currentSource = "radio";
     }
 
-    const songs = tracks.filter(track => track.type === "song");
-    const interventions = tracks.filter(track => track.type === "intervention");
+    const songs = tracks.filter(track=>track.type==="song");
+    const interventions = tracks.filter(track=>track.type==="intervention");
 
-    // Si hay música y no acabamos de escuchar una intervención,
-    // existe un 20% de probabilidad de emitir una intervención.
-    const canPlayIntervention = interventions.length > 0 &&
-      (songs.length > 0 || youtubeQueue.length > 0) &&
+    const hasMusic = songs.length>0 || youtubeQueue.length>0;
+
+    // Intervención aleatoria. Nunca dos seguidas si hay música.
+    const canPlayIntervention =
+      interventions.length>0 &&
+      hasMusic &&
       !lastWasIntervention;
 
-    if(canPlayIntervention && Math.random() < INTERVENTION_CHANCE){
+    if(canPlayIntervention && Math.random()<INTERVENTION_CHANCE){
       let available = interventions;
 
-      if(interventions.length > 1){
-        available = interventions.filter(track => track.id !== lastInterventionId);
+      if(interventions.length>1){
+        available = interventions.filter(
+          track=>track.id!==lastInterventionId
+        );
       }
 
       const chosen = randomItem(available);
+
       lastInterventionId = chosen.id;
       lastWasIntervention = true;
 
@@ -655,44 +966,30 @@ async function radioNext(){
       return;
     }
 
-    // Elegir al azar entre canciones y videos pendientes.
-    const candidates = [];
-
-    songs.forEach(track => {
-      candidates.push({kind:"song",id:track.id});
-    });
-
-    youtubeQueue.forEach(video => {
-      candidates.push({kind:"youtube",id:video.id});
-    });
-
-    if(candidates.length){
-      const chosen = randomItem(candidates);
-
+    // PRIORIDAD 1: YOUTUBE.
+    if(youtubeQueue.length>0){
       lastWasIntervention = false;
-
-      if(chosen.kind === "youtube"){
-        const index = youtubeQueue.findIndex(video => video.id === chosen.id);
-        if(index !== -1){
-          const video = youtubeQueue.splice(index,1)[0];
-          saveYoutubeQueue();
-          renderYoutubeQueue();
-          playYoutubeVideo(video);
-        }
-      }else{
-        await playTrack(chosen.id,true,true);
-      }
-
+      playNextYoutube();
       return;
     }
 
-    // Si no hay canciones ni videos, reproducir intervenciones disponibles.
-    if(interventions.length){
-      const available = interventions.length > 1
-        ? interventions.filter(track => track.id !== lastInterventionId)
+    // PRIORIDAD 2: CANCIONES SIN REPETIR.
+    const nextSong = getNextSong();
+
+    if(nextSong){
+      lastWasIntervention = false;
+      await playTrack(nextSong.id,true,true);
+      return;
+    }
+
+    // PRIORIDAD 3: si solo hay intervenciones, pueden repetirse.
+    if(interventions.length>0){
+      const available = interventions.length>1
+        ? interventions.filter(track=>track.id!==lastInterventionId)
         : interventions;
 
       const chosen = randomItem(available);
+
       lastInterventionId = chosen.id;
       lastWasIntervention = true;
 
@@ -715,35 +1012,57 @@ async function previewTrack(id){
 }
 
 async function startRadio(){
-  const wasYoutube = currentSource === "youtube";
-  radioMode = true;
   closeEditor();
 
-  if(wasYoutube){
-    if(ytPlayer && ytReady) ytPlayer.stopVideo();
-    document.getElementById("youtubeBox").style.display = "none";
-    currentSource = "radio";
+  // Si veníamos escuchando una vista previa, vuelve a la programación.
+  if(!radioMode){
+    radioMode = true;
     await radioNext();
-  }else if(currentId && !player.paused){
+    return;
+  }
+
+  radioMode = true;
+
+  if(currentSource==="youtube"){
+    if(ytPlayer && ytReady){
+      const state = ytPlayer.getPlayerState();
+
+      if(state!==YT.PlayerState.PLAYING){
+        ytPlayer.playVideo();
+      }
+    }
+    return;
+  }
+
+  if(currentId && !player.paused){
     updatePlaybackStatus();
-  }else if(currentId && player.paused){
+    return;
+  }
+
+  if(currentId && player.paused){
     try{
       await player.play();
       playing = true;
-    }catch(error){}
+    }catch(error){
+      await radioNext();
+    }
+
     updatePlaybackStatus();
-  }else{
-    await radioNext();
+    return;
   }
+
+  await radioNext();
 }
 
+/* CONTROLES */
+
 document.getElementById("playBtn").onclick = async function(){
-  if(currentSource === "youtube"){
+  if(currentSource==="youtube"){
     if(!ytReady || !ytPlayer) return;
 
     const state = ytPlayer.getPlayerState();
 
-    if(state === YT.PlayerState.PLAYING){
+    if(state===YT.PlayerState.PLAYING){
       ytPlayer.pauseVideo();
     }else{
       ytPlayer.playVideo();
@@ -771,16 +1090,20 @@ document.getElementById("playBtn").onclick = async function(){
   updatePlaybackStatus();
 };
 
-document.getElementById("nextBtn").onclick = () => radioNext();
+document.getElementById("nextBtn").onclick = ()=>{
+  radioMode = true;
+  radioNext();
+};
 
 document.getElementById("previousBtn").onclick = async function(){
-  if(currentSource === "youtube"){
+  if(currentSource==="youtube"){
     if(ytPlayer && ytReady) ytPlayer.stopVideo();
+
     document.getElementById("youtubeBox").style.display = "none";
     currentSource = "radio";
   }
 
-  if(history.length > 1){
+  if(history.length>1){
     history.pop();
     const previousId = history[history.length-1];
 
@@ -794,84 +1117,102 @@ document.getElementById("previousBtn").onclick = async function(){
   }
 };
 
+/* EVENTOS DEL REPRODUCTOR */
+
 player.addEventListener("play",()=>{
   playing = true;
   updatePlaybackStatus();
 });
 
 player.addEventListener("pause",()=>{
-  if(currentSource === "radio"){
+  if(currentSource==="radio"){
     playing = false;
     updatePlaybackStatus();
   }
 });
 
 player.addEventListener("ended",()=>{
-  if(radioMode && currentSource === "radio"){
+  if(radioMode && currentSource==="radio"){
     radioNext();
   }
 });
 
 player.addEventListener("error",()=>{
-  if(currentSource !== "radio") return;
+  if(currentSource!=="radio") return;
+
   playing = false;
   updatePlaybackStatus();
-  nowPlaying.textContent = "No se pudo cargar este audio";
+  nowPlaying.textContent = "Audio no disponible. Saltando...";
+
+  if(radioMode){
+    setTimeout(()=>radioNext(),700);
+  }
 });
 
 player.addEventListener("timeupdate",()=>{
-  if(currentSource !== "radio" || !Number.isFinite(player.duration)) return;
+  if(currentSource!=="radio" || !Number.isFinite(player.duration)) return;
 
   progress.value = (player.currentTime/player.duration)*100;
-  document.getElementById("currentTime").textContent = formatTime(player.currentTime);
-  document.getElementById("duration").textContent = formatTime(player.duration);
+
+  document.getElementById("currentTime").textContent =
+    formatTime(player.currentTime);
+
+  document.getElementById("duration").textContent =
+    formatTime(player.duration);
 });
 
 player.addEventListener("loadedmetadata",()=>{
-  if(currentSource === "radio"){
-    document.getElementById("duration").textContent = formatTime(player.duration);
+  if(currentSource==="radio"){
+    document.getElementById("duration").textContent =
+      formatTime(player.duration);
   }
 });
 
 progress.addEventListener("input",()=>{
-  if(currentSource === "radio" && Number.isFinite(player.duration)){
+  if(currentSource==="radio" && Number.isFinite(player.duration)){
     player.currentTime = (progress.value/100)*player.duration;
   }
 });
 
 document.getElementById("filter").onchange = refreshLibrary;
 
+/* ELIMINAR AUDIO */
+
 async function removeTrack(id){
   if(!confirm("¿Eliminar este audio de la biblioteca?")) return;
 
-  if(id === currentId){
+  if(id===currentId){
     player.pause();
     player.removeAttribute("src");
     player.load();
+
     currentId = null;
     playing = false;
     progress.value = 0;
+
     updatePlayerScreen(null);
     updatePlaybackStatus();
   }
 
-  if(id === radioCurrentId) radioCurrentId = null;
-  history = history.filter(trackId => trackId !== id);
+  history = history.filter(trackId=>trackId!==id);
 
-  if(id === lastInterventionId) lastInterventionId = null;
+  if(id===lastInterventionId) lastInterventionId = null;
 
-  tracks = tracks.filter(track => track.id !== id);
+  tracks = tracks.filter(track=>track.id!==id);
+  songBag = songBag.filter(songId=>songId!==id);
+
   saveTracks();
+  saveSongBag();
   refreshLibrary();
 }
 
-document.getElementById("searchYoutubeBtn").onclick = () => {
+document.getElementById("searchYoutubeBtn").onclick = ()=>{
   window.open("https://www.youtube.com/","_blank","noopener");
 };
 
 document.getElementById("addYoutubeBtn").addEventListener("click",addYoutubeVideo);
 
-// API OFICIAL DE YOUTUBE
+/* API OFICIAL DE YOUTUBE */
 
 window.onYouTubeIframeAPIReady = function(){
   ytPlayer = new YT.Player("youtubePlayer",{
@@ -885,36 +1226,43 @@ window.onYouTubeIframeAPIReady = function(){
     events:{
       onReady:function(){
         ytReady = true;
+
         if(pendingVideo){
           const video = pendingVideo;
           pendingVideo = null;
           ytPlayer.loadVideoById(video.id);
         }
       },
+
       onStateChange:function(event){
-        if(event.data === YT.PlayerState.PLAYING){
+        if(event.data===YT.PlayerState.PLAYING){
           playing = true;
           updatePlaybackStatus();
         }
 
-        if(event.data === YT.PlayerState.PAUSED){
+        if(event.data===YT.PlayerState.PAUSED){
           playing = false;
           updatePlaybackStatus();
         }
 
-        if(event.data === YT.PlayerState.ENDED){
+        if(event.data===YT.PlayerState.ENDED){
           playing = false;
           currentSource = "radio";
+
           document.getElementById("youtubeBox").style.display = "none";
-          radioNext();
+
+          if(radioMode) radioNext();
         }
       },
+
       onError:function(){
         playing = false;
         currentSource = "radio";
+
         document.getElementById("youtubeBox").style.display = "none";
         nowPlaying.textContent = "Video no disponible. Saltando...";
-        radioNext();
+
+        if(radioMode) radioNext();
       }
     }
   });
@@ -924,9 +1272,12 @@ const ytScript = document.createElement("script");
 ytScript.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(ytScript);
 
+/* INICIO */
+
 function init(){
   loadTracks();
   loadYoutubeQueue();
+  loadSongBag();
   refreshLibrary();
   updatePlaybackStatus();
 }
