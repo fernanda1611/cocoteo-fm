@@ -441,6 +441,28 @@ function init() {
   updatePlaybackStatus();
 }
 init();
+  // EXPORTAR BIBLIOTECA DE COCOTEO FM
+const exportBtn = document.createElement("button");
+exportBtn.textContent = "EXPORTAR MI BIBLIOTECA";
+exportBtn.style.cssText = "position:fixed;bottom:15px;right:15px;z-index:99999;padding:14px;background:#ff70c8;color:#100b19;border:0;border-radius:12px;font-weight:bold;";
+document.body.appendChild(exportBtn);
+
+exportBtn.onclick = () => {
+  const data = localStorage.getItem("CocoteoFM_online_tracks");
+
+  if (!data) {
+    alert("No encontré la biblioteca.");
+    return;
+  }
+
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "cocoteo-biblioteca.json";
+  a.click();
+  URL.revokeObjectURL(url);
+};
 </script>
 </body>
 </html>
